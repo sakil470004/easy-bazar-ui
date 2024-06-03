@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="max-w-screen-xl mx-auto">
       <Navbar />
       <div>
         <Outlet />

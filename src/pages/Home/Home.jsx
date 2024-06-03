@@ -1,19 +1,12 @@
-import React from 'react'
+import Slider from "./Slider";
 
 function Home() {
   return (
-    <div>This is hoem
-    
-    {/* give me few design for my home page */}
-    <div>
-        <h1>Home Page</h1>
-        <p>Welcome to the Home Page</p>
+    <div className="px-6">
+      <Slider />
+      
     </div>
-
-
-    
-    </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
