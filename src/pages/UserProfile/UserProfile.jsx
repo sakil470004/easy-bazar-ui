@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
+import { BiArrowBack } from "react-icons/bi";
+
 function UserProfile() {
   const { user } = useAuth();
   const [userData2, setUserData2] = useState({});
@@ -46,11 +48,12 @@ function UserProfile() {
       });
   }, [user?.email]);
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto my-6">
+    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto my-6 relative">
       <h1 className="text-3xl font-bold text-center my-6">User Information</h1>
 
       {!updateOpen ? (
         <div className="space-y-4">
+      
           <div className="avatar flex justify-center items-center">
             <div className="w-64 rounded-full border-2 border-black">
               <img
@@ -87,7 +90,8 @@ function UserProfile() {
           </div>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-4 ">
+        <button onClick={()=>setUpdateOpen(false)} className="absolute top-4 left-4 font-bold text-2xl hover:text-red-400"><BiArrowBack/></button>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col ">
               <label htmlFor="name">Name</label>

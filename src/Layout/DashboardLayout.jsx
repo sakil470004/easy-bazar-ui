@@ -1,4 +1,4 @@
-import { RiDashboard3Line } from "react-icons/ri";
+
 import DashboardSideBar from "../components/Dashboard/DashboardSideBar";
 import { Outlet } from "react-router-dom";
 
@@ -10,9 +10,9 @@ function DashboardLayout() {
         <div className="drawer-content flex flex-col  my-6 px-6">
         <label
             htmlFor="my-drawer-2"
-            className="absolute top-3 right-3 btn btn-sm btn-outline btn-warning drawer-button lg:hidden"
+            className="absolute top-4 right-4 btn btn-sm btn-outline btn-warning drawer-button lg:hidden"
           >
-            <RiDashboard3Line /> Open
+            |||
           </label>
           {/* Page content here */}
           <Outlet />
