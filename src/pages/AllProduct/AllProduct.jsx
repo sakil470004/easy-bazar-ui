@@ -17,8 +17,13 @@ function AllProduct() {
       });
   }, []);
   const handleDelete = (id) => {
+    const token = localStorage.getItem("token");
     fetch(`https://easy-bazar-server.vercel.app/products/${id}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + token,
+      },
     })
       .then((res) => res.json())
       .then((data) => {

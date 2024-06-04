@@ -5,6 +5,7 @@ function AddProduct() {
   const {user}=useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
@@ -34,6 +35,7 @@ function AddProduct() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: "Bearer " + token,
       },
       body: JSON.stringify(newData),
     })

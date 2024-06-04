@@ -31,7 +31,8 @@ const GoogleLogin = () => {
           .then((res) => res.json())
           .then((data) => {
             // added token to loacl storage
-            // localStorage.setItem("token", data.token);
+            localStorage.setItem("token", data.token);
+            toast.success("Successfully Login!");
             navigate(from, { replace: true });
           });
       }

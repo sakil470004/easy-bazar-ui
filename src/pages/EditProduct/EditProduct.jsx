@@ -16,6 +16,7 @@ function EditProduct() {
   }, [id]);
   const handleSubmit = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
@@ -44,6 +45,7 @@ function EditProduct() {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        authorization: "Bearer " + token,
       },
       body: JSON.stringify(newData),
     })
@@ -53,7 +55,6 @@ function EditProduct() {
         form.reset();
         toast.success("Product updated successfully");
         navigate("/dashboard/products");
-        
       });
   };
   return (
@@ -159,7 +160,9 @@ function EditProduct() {
               <input
                 type="text"
                 id="images"
-                defaultValue={product?.images?.map((image) => image.url)?.join(",")}
+                defaultValue={product?.images
+                  ?.map((image) => image.url)
+                  ?.join(",")}
                 name="images"
                 placeholder="For multiple images, separate them with commas `,`"
                 className="w-full border border-gray-300 p-2 rounded"
