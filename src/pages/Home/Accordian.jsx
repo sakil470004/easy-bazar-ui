@@ -32,11 +32,11 @@ const Accordion = () => {
     },
   ];
   return (
-    <div className="my-6">
+    <div className="my-6 mb-10">
     <h2 className="text-2xl font-bold text-orange-400 uppercase">
       FAQ
     </h2>
-      <div className="mt-4 flex flex-col gap-5 border-l-4 pl-3 border-l-green-200">
+      <div className="mt-6 flex flex-col gap-5 border-l-4 pl-3 border-l-green-200">
         {faqArray.map((faq) => (
           <div className="collapse collapse-arrow bg-gray-200" key={faq.id}>
             <input type="radio" name="my-accordion-2" defaultChecked />

@@ -15,6 +15,7 @@ import Orders from "../pages/Orders/Orders";
 import Customers from "../pages/Customers/Customers";
 import EditProduct from "../pages/EditProduct/EditProduct";
 import UserProfile from "../pages/UserProfile/UserProfile";
+import FlashSalePage from "../pages/FlashSalePage/FlashSalePage";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ export const router = createBrowserRouter([
         element: <Login />,
       },
       { path: "/register", element: <Registration /> },
+      {path: "/flash-sale", element: <FlashSalePage />},
     ],
   },
   {

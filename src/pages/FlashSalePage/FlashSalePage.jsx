@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import FlashSaleCard from "./FlashSaleCard";
+
 import CountUp from "react-countup";
+
+import FlashSaleCard from "../Home/FlashSaleCard";
 import useFunction from "../../hooks/useFunction";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { Link } from "react-router-dom";
-function FlashSale() {
+function FlashSalePage() {
   const [products, setProducts] = useState([]);
   const {isEmpty}=useFunction()
   useEffect(() => {
@@ -16,14 +17,14 @@ function FlashSale() {
           (product) => product?.flash_sale === true
         );
 
-        setProducts(filteredData.slice(0, 6));
+        setProducts(filteredData);
       });
   }, []);
   if (isEmpty(products)) {
     return <LoadingSpinner />;
   }
   return (
-    <div className="my-6">
+    <div className="my-6 mx-6">
       <h2 className="text-2xl font-bold text-orange-400 uppercase">
         FlashSale
       </h2>
@@ -57,9 +58,7 @@ function FlashSale() {
             </div>
           </div>
         </div>
-        <Link to={'/flash-sale'} className="btn font-bold btn-warning btn-outline btn-sm mt-4">
-          View More {">>"}
-        </Link>
+  
       </div>
       <div className="mt-4 grid grid-cols-3 md:grid-cols-6 gap-4">
         {products.map((product) => (
@@ -70,4 +69,4 @@ function FlashSale() {
   );
 }
 
-export default FlashSale;
+export default FlashSalePage;
