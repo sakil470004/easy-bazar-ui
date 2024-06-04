@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import logo from "../assets/logo.png";
+import { BiExit } from "react-icons/bi";
 
 const Navbar = () => {
   const { logout, user } = useAuth();
@@ -58,15 +59,16 @@ const Navbar = () => {
               <li>
                 <button
                   onClick={handleLogout}
-                  className="btn bg-red-500 text-white"
+                  className="btn btn-sm flex items-center justify-center bg-red-500 text-white"
                 >
+                  <BiExit />
                   Logout
                 </button>
               </li>
             )}
           </ul>
         </div>
-        <Link to={'/'} className="cursor-pointer w-36 h-auto font-bold">
+        <Link to={"/"} className="cursor-pointer w-36 h-auto font-bold">
           <img className="w-full h-full" src={logo} alt="logo" />
         </Link>
       </div>
@@ -95,9 +97,9 @@ const Navbar = () => {
           <>
             <button
               onClick={handleLogout}
-              className="btn bg-red-500 text-white hidden lg:block"
+              className="btn btn-sm bg-red-500 text-white  lg:flex hidden  items-center justify-center"
             >
-              Logout
+              <BiExit /> Logout
             </button>
 
             <div className="avatar">
