@@ -8,12 +8,7 @@ import { MdAllInbox } from "react-icons/md";
 import { FaPeopleLine } from "react-icons/fa6";
 function DashboardSideBar() {
   return (
-    <div className="drawer-side">
-      <label
-        htmlFor="my-drawer-2"
-        aria-label="close sidebar"
-        className="drawer-overlay"
-      ></label>
+   
       <ul className="menu p-4 w-80 min-h-full bg-base-100 text-base-content flex flex-col gap-2 border-r-4 border-gray-500">
         <img
           src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png"
@@ -74,7 +69,7 @@ function DashboardSideBar() {
 
         <img src={logo} alt="logo" className="w-full rounded-full mx-auto" />
       </ul>
-    </div>
+
   );
 }
 
