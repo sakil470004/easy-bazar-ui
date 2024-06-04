@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 
+
 const GoogleLogin = () => {
   const { googleLogin } = useAuth();
   const navigate = useNavigate();
@@ -29,7 +30,8 @@ const GoogleLogin = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            localStorage.setItem("token", data.token);
+            // added token to loacl storage
+            // localStorage.setItem("token", data.token);
             navigate(from, { replace: true });
           });
       }

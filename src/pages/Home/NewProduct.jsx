@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import NewProductCard from "./NewProductCard";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import useFunction from "../../hooks/useFunction";
 
 function NewProduct() {
   const [products, setProducts] = useState([]);
+  const {isEmpty}=useFunction()
   useEffect(() => {
     fetch("http://localhost:5000/products")
       .then((res) => res.json())
@@ -11,6 +14,9 @@ function NewProduct() {
         setProducts(data.slice(0, 12));
       });
   }, []);
+  if (isEmpty(products)) {
+    return <LoadingSpinner />;
+  }
   return (
     <div className="my-6">
       <h2 className="text-2xl font-bold text-orange-400 uppercase">

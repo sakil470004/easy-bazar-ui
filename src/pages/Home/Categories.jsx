@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
 import CategoriesCard from "./CategoriesCard";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import useFunction from "../../hooks/useFunction";
 
 function Categories() {
   const [allCategories, setAllCategories] = useState([]);
+  const { isEmpty } = useFunction();
   useEffect(() => {
     fetch("http://localhost:5000/categories")
       .then((res) => res.json())
       .then((data) => setAllCategories(data.slice(0, 12)));
   }, []);
+  if (isEmpty(allCategories)) {
+    return <LoadingSpinner />;
+  }
   return (
     <div className="my-6 mt-10">
       <h2 className="text-2xl font-bold text-orange-400 uppercase">

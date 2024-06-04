@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import FlashSaleCard from "./FlashSaleCard";
 import CountUp from "react-countup";
+import useFunction from "../../hooks/useFunction";
+import LoadingSpinner from "../../components/LoadingSpinner";
 function FlashSale() {
   const [products, setProducts] = useState([]);
+  const {isEmpty}=useFunction()
   useEffect(() => {
     fetch("http://localhost:5000/products")
       .then((res) => res.json())
@@ -14,6 +17,9 @@ function FlashSale() {
         setProducts(filteredData.slice(0, 6));
       });
   }, []);
+  if (isEmpty(products)) {
+    return <LoadingSpinner />;
+  }
   return (
     <div className="my-6">
       <h2 className="text-2xl font-bold text-orange-400 uppercase">
