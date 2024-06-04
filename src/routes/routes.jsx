@@ -9,6 +9,10 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import DashboardLayout from "../Layout/DashboardLayout";
 import DashboardHome from "../pages/DashboardHome/DashboardHome";
 import PrivateRoute from "./private/PrivateRoute";
+import AddProduct from "../pages/AddProduct/AddProduct";
+import AllProduct from "../pages/AllProduct/AllProduct";
+import Orders from "../pages/Orders/Orders";
+import Customers from "../pages/Customers/Customers";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +47,47 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <DashboardHome />,
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "add-products",
+        element: (
+          <PrivateRoute>
+            <AddProduct />,
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "products",
+        element: (
+          <PrivateRoute>
+            <AllProduct />,
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "orders",
+        element: (
+          <PrivateRoute>
+            <Orders />,
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "customers",
+        element: (
+          <PrivateRoute>
+            <Customers />,
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "edit-products",
+        element: (
+          <PrivateRoute>
+            <AddProduct />,
           </PrivateRoute>
         ),
       },
