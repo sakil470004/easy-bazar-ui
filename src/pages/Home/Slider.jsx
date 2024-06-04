@@ -22,17 +22,17 @@ function Slider() {
     return () => clearInterval(interval);
   }, [currentIndex]);
   return (
-    <div className=" w-full my-4">
+    <div className=" w-full overflow-hidden my-4">
       {images.map((img, index) => (
         <div
-          className={` relative w-full  justify-center items-center md:h-[450px] transition-all hover:transform hover:skew-x-2 duration-700 ${
+          className={`group relative w-full  justify-center items-center md:h-[450px]  ${
             index === currentIndex ? "flex" : "hidden"
           }`}
           key={index}
         >
           <img
             src={img}
-            className="w-full object-cover max-h-full m-auto rounded-lg"
+            className="w-full object-cover max-h-full m-auto rounded-lg group-hover:transform group-hover:scale-105 transition-all  duration-700"
             alt="Easy Bazar Image"
           />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
