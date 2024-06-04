@@ -66,12 +66,8 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        <div className="btn btn-ghost text-xl font-bold">
-          {" "}
-          <div >
-            <img className="w-full h-full"  src={logo} alt="logo" />
-            
-          </div>
+        <div className="cursor-pointer w-36 h-auto font-bold">
+          <img className="w-full h-full" src={logo} alt="logo" />
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
