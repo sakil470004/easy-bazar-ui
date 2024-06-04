@@ -8,15 +8,9 @@ function UserProfile() {
   const [userData2, setUserData2] = useState({});
   const [updateOpen, setUpdateOpen] = useState(false);
 
-  //   const user = {
-  //     email: "sakil@gmil.com",
-  //     name: "sakil",
-  //     img: "https://cdn-icons-png.flaticon.com/512/1077/1077012.png",
-  //     phone: "01700000000",
-  //     address: "Dhaka,Bangladesh",
-  //   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
     const formData = new FormData(e.target);
     const data = {
       ...userData2,
@@ -30,6 +24,7 @@ function UserProfile() {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        authorization: "Bearer " + token,
       },
       body: JSON.stringify(data),
     })
@@ -53,7 +48,6 @@ function UserProfile() {
 
       {!updateOpen ? (
         <div className="space-y-4">
-      
           <div className="avatar flex justify-center items-center">
             <div className="w-64 rounded-full border-2 border-black">
               <img
@@ -91,7 +85,12 @@ function UserProfile() {
         </div>
       ) : (
         <div className="space-y-4 ">
-        <button onClick={()=>setUpdateOpen(false)} className="absolute top-4 left-4 font-bold text-2xl hover:text-red-400"><BiArrowBack/></button>
+          <button
+            onClick={() => setUpdateOpen(false)}
+            className="absolute top-4 left-4 font-bold text-2xl hover:text-red-400"
+          >
+            <BiArrowBack />
+          </button>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col ">
               <label htmlFor="name">Name</label>
