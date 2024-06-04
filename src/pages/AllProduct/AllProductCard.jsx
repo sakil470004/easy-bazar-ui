@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
-function AllProductCard({ product }) {
+function AllProductCard({ product,handleDelete }) {
   const { user } = useAuth();
-  const rating = Math.round(product?.ratings);
 
   return (
     <div className="group card max-h-80 card-compact  bg-base-100 shadow-xl rounded-lg border border-white hover:border-gray-400 transition-all duration-300">
@@ -27,7 +26,10 @@ function AllProductCard({ product }) {
           >
             Edit
           </Link>
-          <button className="btn font-bold btn-error btn-outline btn-sm mt-4">
+          <button
+            onClick={() => handleDelete(product?._id)}
+            className="btn font-bold btn-error btn-outline btn-sm mt-4"
+          >
             Delete
           </button>
         </div>
