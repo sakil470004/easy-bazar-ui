@@ -41,7 +41,7 @@ function UserProfile() {
       .then((data) => {
         setUserData2(data);
       });
-  }, [user?.email]);
+  }, [user?.email,updateOpen]);
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto my-6 relative">
       <h1 className="text-3xl font-bold text-center my-6">User Information</h1>
