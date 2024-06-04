@@ -14,6 +14,7 @@ import AllProduct from "../pages/AllProduct/AllProduct";
 import Orders from "../pages/Orders/Orders";
 import Customers from "../pages/Customers/Customers";
 import EditProduct from "../pages/EditProduct/EditProduct";
+import UserProfile from "../pages/UserProfile/UserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +83,9 @@ export const router = createBrowserRouter([
             <Customers />,
           </PrivateRoute>
         ),
+      },
+      {path: "profile", element: <PrivateRoute><UserProfile /></PrivateRoute>
+
       },
 
       {

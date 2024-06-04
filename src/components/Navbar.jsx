@@ -1,15 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import logo from "../assets/logo.png";
 import { BiExit } from "react-icons/bi";
 
 const Navbar = () => {
   const { logout, user } = useAuth();
+  const navigate = useNavigate();
+
 
   const handleLogout = async () => {
     await logout();
   };
-
+const handleProfile = () => { 
+    navigate("/dashboard/profile");
+  }
   return (
     <div className="navbar bg-base-100 pr-6">
       <div className="navbar-start">
@@ -102,8 +106,8 @@ const Navbar = () => {
               <BiExit /> Logout
             </button>
 
-            <div className="avatar">
-              <div className="w-12 rounded-full border-2 border-black">
+            <div className="avatar group ">
+              <div onClick={handleProfile} className="w-12 rounded-full border-2 border-black group-hover:border-yellow-300">
                 <img src={user?.photoURL || "/public/placeholder.jpg"} />
               </div>
             </div>
