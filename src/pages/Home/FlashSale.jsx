@@ -27,8 +27,8 @@ function FlashSale() {
       <h2 className="text-2xl font-bold text-orange-400 uppercase">
         FlashSale
       </h2>
-      <div className="flex shadow-xl rounded-lg p-6 justify-between items-center">
-        <div className="flex gap-9 items-center">
+      <div className="flex md:flex-row flex-col shadow-xl rounded-lg p-6 justify-between items-center">
+        <div className="flex md:flex-row flex-col gap-9 items-center">
           <p className="text-xl text-orange-400 font-medium">Only Sale Now</p>
           <div className="flex gap-4 items-center ">
             <p>Ending In</p>
@@ -61,7 +61,7 @@ function FlashSale() {
           View More {">>"}
         </Link>
       </div>
-      <div className="mt-4 grid grid-cols-3 md:grid-cols-6 gap-4">
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-6 gap-4">
         {products.map((product) => (
           <FlashSaleCard product={product} key={product._id} />
         ))}

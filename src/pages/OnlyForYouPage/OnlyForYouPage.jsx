@@ -22,7 +22,7 @@ function OnlyForYouPage() {
       <h2 className="text-2xl font-bold text-orange-400 uppercase">
         Only For You
       </h2>
-      <div className="mt-4 grid grid-cols-3 md:grid-cols-6 gap-4">
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-6 gap-4">
         {products.map((product) => (
           <OnlyForYouCard product={product} key={product._id} />
         ))}

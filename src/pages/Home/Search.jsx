@@ -27,7 +27,7 @@ function Search({ searchText }) {
         Search Results {">>"} {searchText} {">>"} {products?.length}
       </h2>
 
-      <div className="mt-4 grid grid-cols-3 md:grid-cols-6 gap-4">
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-6 gap-4">
         {products.map((product) => (
           <SearchCard product={product} key={product._id} />
         ))}
