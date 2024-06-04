@@ -6,8 +6,16 @@ This is the user interface for the Easy Bazaar project. It provides a user-frien
 
 - Browse products by category
 - Search for specific products
-- Add products to cart
-- Checkout and place orders
+- Smooth Search Show Result Below Without Changing Page
+- See All Product
+- Add New Product
+- Edit The Added Product
+- Delete The Added Product
+- User Details
+- Edit User Details
+
+## Live Link
+[Live](https://easy-bazar-ui.vercel.app/)
 
 ## Installation
 
