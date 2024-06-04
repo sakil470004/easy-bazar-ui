@@ -2,7 +2,7 @@ function NewProductCard({ product }) {
   const rating = Math.round(product?.ratings);
   
   return (
-    <div className="group card max-h-72 card-compact  bg-base-100 shadow-xl rounded-lg ">
+    <div className="group card max-h-72 card-compact  bg-base-100 shadow-xl rounded-lg border border-white hover:border-gray-400 transition-all duration-300">
       <div className=" w-full  justify-center items-center  transition-all duration-700 overflow-hidden">
         <img
           className="object-cover  max-h-full m-auto rounded-lg group-hover:scale-105 group-hover:transform group-hover:duration-700"
