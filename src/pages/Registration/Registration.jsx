@@ -48,7 +48,7 @@ const Registration = () => {
             .then((res) => res.json())
             .then((data) => {
               // added token to loacl storage
-              // localStorage.setItem("token", data.token);
+              localStorage.setItem("token", data.token);
               navigate(from, { replace: true });
             });
         })

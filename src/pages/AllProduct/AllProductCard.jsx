@@ -18,7 +18,7 @@ function AllProductCard({ product,handleDelete }) {
           <h2 className="text-xl">{product?.name}</h2>
         </Link>
         <p className="text-lg text-orange-400 font-bold">${product?.price}</p>
-        {user?.email === product?.addedBy && (
+        {(user?.email === product?.addedBy|| user?.email==="mynul.sakil@gmail.com") && (
         <div className="flex justify-between">
           <Link
             to={`/dashboard/edit-products/${product?._id}`}
