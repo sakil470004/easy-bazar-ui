@@ -2,10 +2,19 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import logo from "../assets/logo.png";
 import { BiExit } from "react-icons/bi";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const { logout, user } = useAuth();
   const navigate = useNavigate();
+  const [userData2,setUserData2] = useState({});
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserData2(data);
+      });
+  }, [user?.email]);
 
 
   const handleLogout = async () => {
@@ -106,9 +115,9 @@ const handleProfile = () => {
               <BiExit /> Logout
             </button>
 
-            <div className="avatar group ">
+            <div className="avatar group" title={userData2?.name ||""}>
               <div onClick={handleProfile} className="w-12 rounded-full border-2 border-black group-hover:border-yellow-300">
-                <img src={user?.photoURL || "/public/placeholder.jpg"} />
+                <img src={userData2?.img|| user?.photoURL || "/public/placeholder.jpg"} />
               </div>
             </div>
           </>

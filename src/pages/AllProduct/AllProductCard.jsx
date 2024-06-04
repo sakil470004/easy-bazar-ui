@@ -18,7 +18,7 @@ function AllProductCard({ product,handleDelete }) {
           <h2 className="text-xl">{product?.name}</h2>
         </Link>
         <p className="text-lg text-orange-400 font-bold">${product?.price}</p>
-        {/* {user?.email === product?.addedBy && ( */}
+        {user?.email === product?.addedBy && (
         <div className="flex justify-between">
           <Link
             to={`/dashboard/edit-products/${product?._id}`}
@@ -33,7 +33,7 @@ function AllProductCard({ product,handleDelete }) {
             Delete
           </button>
         </div>
-        {/* )} */}
+        )}
       </div>
     </div>
   );
