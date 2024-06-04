@@ -3,11 +3,13 @@ import useAuth from "../hooks/useAuth";
 import logo from "../assets/logo.png";
 import { BiExit } from "react-icons/bi";
 import { useEffect, useState } from "react";
+import { FaCross } from "react-icons/fa6";
+import { GiCrossMark } from "react-icons/gi";
 
-const Navbar = () => {
+const Navbar = ({setSearchText,searchText}) => {
   const { logout, user } = useAuth();
   const navigate = useNavigate();
-  const [userData2,setUserData2] = useState({});
+  const [userData2, setUserData2] = useState({});
   useEffect(() => {
     fetch(`https://easy-bazar-server.vercel.app/users/${user?.email}`)
       .then((res) => res.json())
@@ -16,13 +18,30 @@ const Navbar = () => {
       });
   }, [user?.email]);
 
-
   const handleLogout = async () => {
     await logout();
   };
-const handleProfile = () => { 
+  const handleProfile = () => {
     navigate("/dashboard/profile");
-  }
+  };
+  const searchComponent = (
+    <label className="input relative input-xs input-bordered flex items-center gap-2">
+      <input onChange={(e)=>setSearchText(e.target.value)} value={searchText} required type="text" className="grow" placeholder="Search" />
+      {!searchText ? <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        className="w-4 h-4 opacity-70"
+      >
+        <path
+          fillRule="evenodd"
+          d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+          clipRule="evenodd"
+        />
+      </svg>:
+      <GiCrossMark onClick={()=>setSearchText("")} className="absolute right-2"/>}
+    </label>
+  );
   return (
     <div className="navbar bg-base-100 pr-6">
       <div className="navbar-start">
@@ -45,7 +64,7 @@ const handleProfile = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 "
           >
             <li>
               <Link to={"/"}>Home</Link>
@@ -68,6 +87,7 @@ const handleProfile = () => {
                 <Link to={"/dashboard"}>Dashboard</Link>
               </li>
             )}
+            <li>{searchComponent}</li>
             {user && (
               <li>
                 <button
@@ -86,7 +106,7 @@ const handleProfile = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1 flex items-center gap-2">
           <li>
             <Link to={"/"}>Home</Link>
           </li>
@@ -103,6 +123,7 @@ const handleProfile = () => {
               <Link to={"/dashboard"}>Dashboard</Link>
             </li>
           )}
+          <li>{searchComponent}</li>
         </ul>
       </div>
       <div className="navbar-end space-x-2">
@@ -115,9 +136,18 @@ const handleProfile = () => {
               <BiExit /> Logout
             </button>
 
-            <div className="avatar group" title={userData2?.name ||""}>
-              <div onClick={handleProfile} className="w-12 rounded-full border-2 border-black group-hover:border-yellow-300">
-                <img src={userData2?.img|| user?.photoURL || "/public/placeholder.jpg"} />
+            <div className="avatar group" title={userData2?.name || ""}>
+              <div
+                onClick={handleProfile}
+                className="w-12 rounded-full border-2 border-black group-hover:border-yellow-300"
+              >
+                <img
+                  src={
+                    userData2?.img ||
+                    user?.photoURL ||
+                    "/public/placeholder.jpg"
+                  }
+                />
               </div>
             </div>
           </>
