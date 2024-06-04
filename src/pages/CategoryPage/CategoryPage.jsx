@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
-import CategoriesCard from "./CategoriesCard";
-import LoadingSpinner from "../../components/LoadingSpinner";
 import useFunction from "../../hooks/useFunction";
-import { Link } from "react-router-dom";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import CategoriesCard from "../Home/CategoriesCard";
 
-function Categories() {
+
+function CategoryPage() {
   const [allCategories, setAllCategories] = useState([]);
   const { isEmpty } = useFunction();
   useEffect(() => {
     fetch("https://easy-bazar-server.vercel.app/categories")
       .then((res) => res.json())
-      .then((data) => setAllCategories(data.slice(0, 12)));
+      .then((data) => setAllCategories(data));
   }, []);
   if (isEmpty(allCategories)) {
     return <LoadingSpinner />;
   }
   return (
-    <div className="my-6 mt-10">
+    <div className="m-6">
       <h2 className="text-2xl font-bold text-orange-400 uppercase">
         Categories
       </h2>
@@ -25,13 +25,9 @@ function Categories() {
           <CategoriesCard category={category} key={category._id} />
         ))}
       </div>
-      <div className="flex justify-end">
-        <Link to={"/categories-all"} className="btn font-bold btn-warning btn-outline btn-sm  mt-4">
-          View More {">>"}
-        </Link>
-      </div>
+     
     </div>
   );
 }
 
-export default Categories;
+export default CategoryPage;

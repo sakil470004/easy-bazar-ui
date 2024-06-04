@@ -16,6 +16,9 @@ import Customers from "../pages/Customers/Customers";
 import EditProduct from "../pages/EditProduct/EditProduct";
 import UserProfile from "../pages/UserProfile/UserProfile";
 import FlashSalePage from "../pages/FlashSalePage/FlashSalePage";
+import NewProductPage from "../pages/NewProductPage/NewProductPage";
+import CategoryPage from "../pages/CategoryPage/CategoryPage";
+import OnlyForYouPage from "../pages/OnlyForYouPage/OnlyForYouPage";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +41,9 @@ export const router = createBrowserRouter([
       },
       { path: "/register", element: <Registration /> },
       {path: "/flash-sale", element: <FlashSalePage />},
+      {path: "/new-product-page", element: <NewProductPage />},
+      {path:'/categories-all',element:<CategoryPage/>},
+      {path:'/only-for-you',element:<OnlyForYouPage/>},
     ],
   },
   {

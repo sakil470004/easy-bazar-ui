@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import NewProductCard from "./NewProductCard";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import useFunction from "../../hooks/useFunction";
+import { Link } from "react-router-dom";
 
 function NewProduct() {
   const [products, setProducts] = useState([]);
@@ -28,7 +29,7 @@ function NewProduct() {
         ))}
       </div>
       <div className="flex justify-end">
-        <button className="btn font-bold btn-warning btn-outline btn-sm mt-4">View More {">>"}</button>
+        <Link to={'/new-product-page'} className="btn font-bold btn-warning btn-outline btn-sm mt-4">View More {">>"}</Link>
       </div>
     </div>
   );

@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
-import OnlyForYouCard from "./OnlyForYouCard";
 import useFunction from "../../hooks/useFunction";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { Link } from "react-router-dom";
+import OnlyForYouCard from "../Home/OnlyForYouCard";
 
-function OnlyForYou() {
+
+function OnlyForYouPage() {
   const [products, setProducts] = useState([]);
   const { isEmpty } = useFunction();
   useEffect(() => {
     fetch("https://easy-bazar-server.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data.slice(0, 12));
+        setProducts(data);
       });
   }, []);
   if (isEmpty(products)) {
     return <LoadingSpinner />;
   }
   return (
-    <div className="my-6">
+    <div className="m-6">
       <h2 className="text-2xl font-bold text-orange-400 uppercase">
         Only For You
       </h2>
@@ -27,13 +27,8 @@ function OnlyForYou() {
           <OnlyForYouCard product={product} key={product._id} />
         ))}
       </div>
-      <div className="flex justify-end">
-        <Link to={'/only-for-you'} className="btn font-bold btn-warning btn-outline btn-sm mt-4">
-          View More {">>"}
-        </Link>
-      </div>
     </div>
   );
 }
 
-export default OnlyForYou;
+export default OnlyForYouPage;
