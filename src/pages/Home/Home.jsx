@@ -1,5 +1,6 @@
 import Categories from "./Categories";
 import NewProduct from "./NewProduct";
+import OnlyForYou from "./OnlyForYou";
 import Slider from "./Slider";
 
 function Home() {
@@ -7,6 +8,7 @@ function Home() {
     <div className="px-6">
       <Slider />
       <Categories />
+      <OnlyForYou/>
       <NewProduct />
     </div>
   );

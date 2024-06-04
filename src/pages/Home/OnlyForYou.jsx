@@ -1,24 +1,23 @@
 import { useEffect, useState } from "react";
-import NewProductCard from "./NewProductCard";
+import OnlyForYouCard from "./OnlyForYouCard";
 
-function NewProduct() {
+function OnlyForYou() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/products")
       .then((res) => res.json())
       .then((data) => {
-        data.reverse();
         setProducts(data.slice(0, 12));
       });
   }, []);
   return (
     <div className="my-6">
       <h2 className="text-2xl font-bold text-orange-400 uppercase">
-        New Product
+        Only For You
       </h2>
       <div className="mt-4 grid grid-cols-3 md:grid-cols-6 gap-4">
         {products.map((product) => (
-          <NewProductCard product={product} key={product._id} />
+          <OnlyForYouCard product={product} key={product._id} />
         ))}
       </div>
       <div className="flex justify-end">
@@ -28,4 +27,4 @@ function NewProduct() {
   );
 }
 
-export default NewProduct;
+export default OnlyForYou;

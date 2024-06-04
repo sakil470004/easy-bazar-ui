@@ -1,4 +1,4 @@
-import{ useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CategoriesCard from "./CategoriesCard";
 
 function Categories() {
@@ -13,11 +13,16 @@ function Categories() {
       <h2 className="text-2xl font-bold text-orange-400 uppercase">
         Categories
       </h2>
-     <div className="mt-4 grid grid-cols-3 md:grid-cols-6 gap-4">
-     {allCategories.map((category) => (
-        <CategoriesCard category={category} key={category._id} />
-      ))}
-     </div>
+      <div className="mt-4 grid grid-cols-3 md:grid-cols-6 gap-4">
+        {allCategories.map((category) => (
+          <CategoriesCard category={category} key={category._id} />
+        ))}
+      </div>
+      <div className="flex justify-end">
+        <button className="btn font-bold btn-warning btn-outline btn-sm  mt-4">
+          View More {">>"}
+        </button>
+      </div>
     </div>
   );
 }
