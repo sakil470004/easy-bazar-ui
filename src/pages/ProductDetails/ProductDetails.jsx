@@ -58,9 +58,14 @@ function ProductDetails() {
                   ${product?.price}
                 </span>
                 <span className=" text-black  mx-1">
-                  - {product?.discount}%
+                  - {product?.discount || 0}%
                 </span>
               </div>
+              <p className="badge badge-outline badge-warning font-bold my-2">Brand : {product.brand || "N/A"}</p>
+              <p className="text-lg text-gray-400">
+                Estimated Delivery:{" "}
+                {product?.shipping_details?.estimated_delivery || "N/A"}
+              </p>
               <div>
                 <button className="btn btn-warning mt-4 btn-outline btn-sm">
                   Add to Cart

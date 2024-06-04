@@ -4,7 +4,6 @@ import useFunction from "../../hooks/useFunction";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import AllProductCard from "./AllProductCard";
 
-
 function AllProduct() {
   const [products, setProducts] = useState([]);
   const { isEmpty } = useFunction();
@@ -12,6 +11,7 @@ function AllProduct() {
     fetch("http://localhost:5000/products")
       .then((res) => res.json())
       .then((data) => {
+        data.reverse();
         setProducts(data);
       });
   }, []);
@@ -27,11 +27,6 @@ function AllProduct() {
         {products.map((product) => (
           <AllProductCard product={product} key={product._id} />
         ))}
-      </div>
-      <div className="flex justify-end">
-        <button className="btn font-bold btn-warning btn-outline btn-sm mt-4">
-          View More {">>"}
-        </button>
       </div>
     </div>
   );

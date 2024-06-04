@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 function AllProductCard({ product }) {
+  const { user } = useAuth();
   const rating = Math.round(product?.ratings);
 
   return (
@@ -17,14 +19,16 @@ function AllProductCard({ product }) {
           <h2 className="text-xl">{product?.name}</h2>
         </Link>
         <p className="text-lg text-orange-400 font-bold">${product?.price}</p>
-        <div className="flex justify-between">
-          <button className="btn font-bold btn-warning btn-outline btn-sm mt-4">
-            Edit
-          </button>
-          <button className="btn font-bold btn-error btn-outline btn-sm mt-4">
-            Delete
-          </button>
-        </div>
+        {/* {user?.email === product?.addedBy && ( */}
+          <div className="flex justify-between">
+            <button className="btn font-bold btn-warning btn-outline btn-sm mt-4">
+              Edit
+            </button>
+            <button className="btn font-bold btn-error btn-outline btn-sm mt-4">
+              Delete
+            </button>
+          </div>
+        {/* )} */}
       </div>
     </div>
   );

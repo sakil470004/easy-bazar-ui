@@ -10,6 +10,7 @@ function FlashSale() {
     fetch("http://localhost:5000/products")
       .then((res) => res.json())
       .then((data) => {
+        data.reverse();
         const filteredData = data.filter(
           (product) => product?.flash_sale === true
         );
