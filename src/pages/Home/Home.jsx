@@ -1,3 +1,4 @@
+import Accordion from "./Accordian";
 import Categories from "./Categories";
 import FlashSale from "./FlashSale";
 import NewProduct from "./NewProduct";
@@ -13,6 +14,7 @@ function Home() {
 
       <OnlyForYou/>
       <NewProduct />
+      <Accordion />
     </div>
   );
 }

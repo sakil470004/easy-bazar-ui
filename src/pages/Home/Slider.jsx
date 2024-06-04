@@ -1,18 +1,20 @@
 import { useState } from "react";
 import img1 from "../../assets/1.webp";
-import img2 from "../../assets/2.webp";
 import img3 from "../../assets/3.webp";
+import img5 from "../../assets/5.webp";
+import img6 from "../../assets/6.webp";
+
 import { useEffect } from "react";
 function Slider() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const images = [img1, img2, img3];
+  const images = [img5, img1, img6, img3 ];
 
   const handleNext = (index) => {
-    const nextIndex = (index + 1) % 3;
+    const nextIndex = (index + 1) % 4;
     setCurrentIndex(nextIndex);
   };
   const handlePrev = (index) => {
-    const prevIndex = (index - 1 + 3) % 3;
+    const prevIndex = (index - 1 + 4) % 4;
     setCurrentIndex(prevIndex);
   };
   useEffect(() => {
