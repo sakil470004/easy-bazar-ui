@@ -9,7 +9,7 @@ function Categories() {
       .then((data) => setAllCategories(data.slice(0, 12)));
   }, []);
   return (
-    <div className="my-6">
+    <div className="my-6 mt-10">
       <h2 className="text-2xl font-bold text-orange-400 uppercase">
         Categories
       </h2>

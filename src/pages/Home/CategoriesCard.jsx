@@ -1,5 +1,5 @@
 function CategoriesCard({ category }) {
-  console.log(category);
+
   return (
     <div className="group card max-h-72 card-compact  bg-base-100 shadow-xl rounded-lg ">
       <div className=" w-full  justify-center items-center  transition-all duration-700 overflow-hidden">

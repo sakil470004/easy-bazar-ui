@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-// import useAuth from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
-  // const { logout, user } = useAuth();
+  const { logout, user } = useAuth();
 
   // const handleLogout = async () => {
   //   await logout();
@@ -38,7 +39,7 @@ const Navbar = () => {
             <li>
               <Link to={"/about"}>About</Link>
             </li>
-            {/* {!user && (
+            {!user && (
               <>
                 <li>
                   <Link to={"/login"}>Login</Link>
@@ -62,13 +63,16 @@ const Navbar = () => {
                   Logout
                 </button>
               </li>
-            )} */}
+            )}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl font-bold">
+        <div className="btn btn-ghost text-xl font-bold">
           {" "}
-          <Link to={"/"}>Easy Bazar</Link>
-        </a>
+          <div >
+            <img className="w-full h-full"  src={logo} alt="logo" />
+            
+          </div>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -78,20 +82,20 @@ const Navbar = () => {
           <li>
             <Link to={"/about"}>About</Link>
           </li>
-          {/* {!user && (
+          {!user && (
             <li>
               <Link to={"/register"}>Register</Link>
             </li>
-          )} */}
-          {/* {user && (
+          )}
+          {user && (
             <li>
               <Link to={"/dashboard"}>Dashboard</Link>
             </li>
-          )} */}
+          )}
         </ul>
       </div>
       <div className="navbar-end space-x-2">
-        {/* {user ? (
+        {user ? (
           <>
             <button
               onClick={handleLogout}
@@ -107,10 +111,10 @@ const Navbar = () => {
             </div>
           </>
         ) : (
-          <button className="btn bg-blue-500 text-white hidden lg:block">
-          <Link to={"/login"}>Login</Link>
+          <button className="btn btn-sm btn-outline btn-warning  lg:block">
+            <Link to={"/login"}>Login</Link>
           </button>
-        )} */}
+        )}
       </div>
     </div>
   );

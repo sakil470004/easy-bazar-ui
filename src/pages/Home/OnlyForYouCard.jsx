@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function OnlyForYouCard({ product }) {
   const priceAfterDiscount = (
     product?.price -
@@ -13,7 +15,9 @@ function OnlyForYouCard({ product }) {
         />
       </div>
       <div className="card-body ">
-        <h2 className="text-xl ">{product?.name}</h2>
+      <Link to={`/product/${product?._id}`}>
+          <h2 className="text-xl">{product?.name}</h2>
+        </Link>
         <p className="text-lg text-orange-400 font-bold">
           ${priceAfterDiscount}
         </p>

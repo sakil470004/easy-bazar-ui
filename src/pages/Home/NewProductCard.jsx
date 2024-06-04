@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 function NewProductCard({ product }) {
   const rating = Math.round(product?.ratings);
-  
+
   return (
     <div className="group card max-h-72 card-compact  bg-base-100 shadow-xl rounded-lg border border-white hover:border-gray-400 transition-all duration-300">
       <div className=" w-full  justify-center items-center  transition-all duration-700 overflow-hidden">
@@ -11,7 +13,9 @@ function NewProductCard({ product }) {
         />
       </div>
       <div className="card-body ">
-        <h2 className="text-xl ">{product?.name}</h2>
+        <Link to={`/product/${product?._id}`}>
+          <h2 className="text-xl">{product?.name}</h2>
+        </Link>
         <p className="text-lg text-orange-400 font-bold">${product?.price}</p>
         {/* rating component */}
         <div className="rating rating-xs flex items-center">
@@ -23,7 +27,11 @@ function NewProductCard({ product }) {
               className="mask mask-star-2 bg-orange-400"
               checked={rating === i + 1}
             />
-          ))} <span className="text-md text-gray-500 mx-1">{product?.ratings}</span> <span className="text-md  text-gray-500 ">{`(${product?.reviews_count || 0})`}</span>
+          ))}{" "}
+          <span className="text-md text-gray-500 mx-1">{product?.ratings}</span>{" "}
+          <span className="text-md  text-gray-500 ">{`(${
+            product?.reviews_count || 0
+          })`}</span>
         </div>
       </div>
     </div>
