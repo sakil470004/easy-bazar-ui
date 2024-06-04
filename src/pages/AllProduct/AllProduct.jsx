@@ -9,7 +9,7 @@ function AllProduct() {
   const [products, setProducts] = useState([]);
   const { isEmpty } = useFunction();
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://easy-bazar-server.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         data.reverse();
@@ -17,7 +17,7 @@ function AllProduct() {
       });
   }, []);
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(`https://easy-bazar-server.vercel.app/products/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

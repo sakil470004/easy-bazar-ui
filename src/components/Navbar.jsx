@@ -9,7 +9,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [userData2,setUserData2] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user?.email}`)
+    fetch(`https://easy-bazar-server.vercel.app/users/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setUserData2(data);

@@ -7,7 +7,7 @@ function OnlyForYou() {
   const [products, setProducts] = useState([]);
   const { isEmpty } = useFunction();
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://easy-bazar-server.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.slice(0, 12));
