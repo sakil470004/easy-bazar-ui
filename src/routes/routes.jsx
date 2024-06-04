@@ -19,6 +19,7 @@ import FlashSalePage from "../pages/FlashSalePage/FlashSalePage";
 import NewProductPage from "../pages/NewProductPage/NewProductPage";
 import CategoryPage from "../pages/CategoryPage/CategoryPage";
 import OnlyForYouPage from "../pages/OnlyForYouPage/OnlyForYouPage";
+import About from "../pages/About/About";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,7 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+      {path:'/about',element:<About/>},
       { path: "/register", element: <Registration /> },
       {path: "/flash-sale", element: <FlashSalePage />},
       {path: "/new-product-page", element: <NewProductPage />},
