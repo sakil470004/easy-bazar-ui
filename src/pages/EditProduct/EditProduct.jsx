@@ -1,8 +1,17 @@
-import toast from "react-hot-toast";
-import useAuth from "../../hooks/useAuth";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-function AddProduct() {
-  const {user}=useAuth();
+function EditProduct() {
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/products/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setProduct(data);
+      });
+  }, [id]);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -27,7 +36,6 @@ function AddProduct() {
       colors: data.colors.split(","),
       categories: data.categories.split(","),
       mainImage: { url: data.mainImage, alt: data.name },
-      addedBy:user?.email
     };
     console.log(newData);
     fetch("http://localhost:5000/products", {
@@ -40,14 +48,13 @@ function AddProduct() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        toast.success("Product added successfully");
-        form.reset();
+        // form.reset();
       });
   };
   return (
     <div className="my-6 ">
       <h2 className="text-2xl font-bold text-orange-400 uppercase">
-        Add Product
+        Update Product
       </h2>
       <div>
         <form onSubmit={handleSubmit}>
@@ -59,6 +66,7 @@ function AddProduct() {
                 id="name"
                 name="name"
                 placeholder="Name"
+                defaultValue={product?.name}
                 className="w-full border border-gray-300 p-2 rounded"
               />
             </div>
@@ -69,6 +77,7 @@ function AddProduct() {
                 id="price"
                 name="price"
                 placeholder="Price"
+                defaultValue={product?.price}
                 className="w-full border border-gray-300 p-2 rounded"
               />
             </div>
@@ -78,6 +87,7 @@ function AddProduct() {
                 id="description"
                 name="description"
                 placeholder="Description"
+                defaultValue={product?.description}
                 className="w-full border border-gray-300 p-2 rounded"
               ></textarea>
             </div>
@@ -88,6 +98,7 @@ function AddProduct() {
                 type="number"
                 id="discount"
                 name="discount"
+                defaultValue={product?.discount}
                 placeholder="Discount is in percentage , e.g. 15 for 15% discount"
                 className="w-full border border-gray-300 p-2 rounded"
               />
@@ -99,6 +110,7 @@ function AddProduct() {
                 type="text"
                 id="brand"
                 name="brand"
+                defaultValue={product?.brand}
                 placeholder="Brand"
                 className="w-full border border-gray-300 p-2 rounded"
               />
@@ -110,6 +122,7 @@ function AddProduct() {
                 type="number"
                 id="ratings"
                 name="ratings"
+                defaultValue={product?.ratings}
                 placeholder="max 5"
                 className="w-full border border-gray-300 p-2 rounded"
               />
@@ -120,6 +133,7 @@ function AddProduct() {
                 type="number"
                 id="reviews_count"
                 name="reviews_count"
+                defaultValue={product?.reviews_count}
                 placeholder="Reviews Count"
                 className="w-full border border-gray-300 p-2 rounded"
               />
@@ -130,6 +144,7 @@ function AddProduct() {
                 type="text"
                 id="mainImage"
                 name="mainImage"
+                defaultValue={product?.mainImage?.url}
                 placeholder="Main Image"
                 className="w-full border border-gray-300 p-2 rounded"
               />
@@ -139,6 +154,7 @@ function AddProduct() {
               <input
                 type="text"
                 id="images"
+                defaultValue={product?.images.map((image) => image.url).join(",")}
                 name="images"
                 placeholder="For multiple images, separate them with commas `,`"
                 className="w-full border border-gray-300 p-2 rounded"
@@ -150,6 +166,7 @@ function AddProduct() {
                 type="text"
                 id="features"
                 name="features"
+                defaultValue={product?.features.join(",")}
                 placeholder="For multiple features, separate them with commas `,`"
                 className="w-full border border-gray-300 p-2 rounded"
               />
@@ -160,6 +177,7 @@ function AddProduct() {
                 type="text"
                 id="colors"
                 name="colors"
+                defaultValue={product?.colors.join(",")}
                 placeholder="For multiple colors, separate them with commas `,`"
                 className="w-full border border-gray-300 p-2 rounded"
               />
@@ -168,6 +186,7 @@ function AddProduct() {
               <label htmlFor="categories">Categories</label>
               <input
                 type="text"
+                defaultValue={product?.categories.join(",")}
                 id="categories"
                 name="categories"
                 placeholder="For multiple categories, separate them with commas `,`"
@@ -183,6 +202,7 @@ function AddProduct() {
                 type="checkbox"
                 id="flash_sale"
                 name="flash_sale"
+                defaultChecked={product?.flash_sale}
                 className="border  border-gray-300 p-2 rounded"
               />
               <label htmlFor="flash_sale">Flash Sale</label>
@@ -190,7 +210,7 @@ function AddProduct() {
 
             <div className="md:col-span-2">
               <button className="bg-orange-400 text-white p-2 w-full rounded">
-                Add Product
+                Update Product
               </button>
             </div>
           </div>
@@ -200,4 +220,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default EditProduct;

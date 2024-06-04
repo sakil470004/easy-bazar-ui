@@ -13,6 +13,7 @@ import AddProduct from "../pages/AddProduct/AddProduct";
 import AllProduct from "../pages/AllProduct/AllProduct";
 import Orders from "../pages/Orders/Orders";
 import Customers from "../pages/Customers/Customers";
+import EditProduct from "../pages/EditProduct/EditProduct";
 
 export const router = createBrowserRouter([
   {
@@ -84,10 +85,10 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: "edit-products",
+        path: "edit-products/:id",
         element: (
           <PrivateRoute>
-            <AddProduct />,
+            <EditProduct />,
           </PrivateRoute>
         ),
       },

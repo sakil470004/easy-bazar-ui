@@ -20,14 +20,17 @@ function AllProductCard({ product }) {
         </Link>
         <p className="text-lg text-orange-400 font-bold">${product?.price}</p>
         {/* {user?.email === product?.addedBy && ( */}
-          <div className="flex justify-between">
-            <button className="btn font-bold btn-warning btn-outline btn-sm mt-4">
-              Edit
-            </button>
-            <button className="btn font-bold btn-error btn-outline btn-sm mt-4">
-              Delete
-            </button>
-          </div>
+        <div className="flex justify-between">
+          <Link
+            to={`/dashboard/edit-products/${product?._id}`}
+            className="btn font-bold btn-warning btn-outline btn-sm mt-4"
+          >
+            Edit
+          </Link>
+          <button className="btn font-bold btn-error btn-outline btn-sm mt-4">
+            Delete
+          </button>
+        </div>
         {/* )} */}
       </div>
     </div>
