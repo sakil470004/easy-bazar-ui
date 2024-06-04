@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
 
 function EditProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:5000/products/${id}`)
@@ -38,8 +40,8 @@ function EditProduct() {
       mainImage: { url: data.mainImage, alt: data.name },
     };
     console.log(newData);
-    fetch("http://localhost:5000/products", {
-      method: "POST",
+    fetch(`http://localhost:5000/products/${product?._id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -48,7 +50,10 @@ function EditProduct() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        // form.reset();
+        form.reset();
+        toast.success("Product updated successfully");
+        navigate("/dashboard/products");
+        
       });
   };
   return (
@@ -154,7 +159,7 @@ function EditProduct() {
               <input
                 type="text"
                 id="images"
-                defaultValue={product?.images.map((image) => image.url).join(",")}
+                defaultValue={product?.images?.map((image) => image.url)?.join(",")}
                 name="images"
                 placeholder="For multiple images, separate them with commas `,`"
                 className="w-full border border-gray-300 p-2 rounded"
@@ -166,7 +171,7 @@ function EditProduct() {
                 type="text"
                 id="features"
                 name="features"
-                defaultValue={product?.features.join(",")}
+                defaultValue={product?.features?.join(",")}
                 placeholder="For multiple features, separate them with commas `,`"
                 className="w-full border border-gray-300 p-2 rounded"
               />
@@ -177,7 +182,7 @@ function EditProduct() {
                 type="text"
                 id="colors"
                 name="colors"
-                defaultValue={product?.colors.join(",")}
+                defaultValue={product?.colors?.join(",")}
                 placeholder="For multiple colors, separate them with commas `,`"
                 className="w-full border border-gray-300 p-2 rounded"
               />
@@ -186,7 +191,7 @@ function EditProduct() {
               <label htmlFor="categories">Categories</label>
               <input
                 type="text"
-                defaultValue={product?.categories.join(",")}
+                defaultValue={product?.categories?.join(",")}
                 id="categories"
                 name="categories"
                 placeholder="For multiple categories, separate them with commas `,`"
