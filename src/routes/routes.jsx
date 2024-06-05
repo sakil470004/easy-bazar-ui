@@ -21,6 +21,7 @@ import CategoryPage from "../pages/CategoryPage/CategoryPage";
 import OnlyForYouPage from "../pages/OnlyForYouPage/OnlyForYouPage";
 import About from "../pages/About/About";
 import CartPage from "../pages/CartPage/CartPage";
+import CategorySearch from "../pages/CategorySearch/CategorySearch";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,7 @@ export const router = createBrowserRouter([
       {path: "/new-product-page", element: <NewProductPage />},
       {path:'/categories-all',element:<CategoryPage/>},
       {path:'/only-for-you',element:<OnlyForYouPage/>},
+      {path:'/search/:nameId',element:<CategorySearch/>},
     ],
   },
   {

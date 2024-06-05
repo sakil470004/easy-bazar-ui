@@ -62,7 +62,7 @@ function Customers() {
                   {usr?.phone||"N/A"}
                 </span>
               </td>
-              <td>{usr?._id}</td>
+              <td>{usr?.email}</td>
               <th>
                 <button className="btn btn-ghost btn-xs">details</button>
               </th>

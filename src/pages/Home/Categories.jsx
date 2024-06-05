@@ -10,7 +10,10 @@ function Categories() {
   useEffect(() => {
     fetch("https://easy-bazar-server.vercel.app/categories")
       .then((res) => res.json())
-      .then((data) => setAllCategories(data.slice(0, 12)));
+      .then((data) => {
+        data.reverse()
+        setAllCategories(data.slice(0, 12));
+      });
   }, []);
   if (isEmpty(allCategories)) {
     return <LoadingSpinner />;
@@ -26,7 +29,10 @@ function Categories() {
         ))}
       </div>
       <div className="flex justify-end">
-        <Link to={"/categories-all"} className="btn font-bold btn-warning btn-outline btn-sm  mt-4">
+        <Link
+          to={"/categories-all"}
+          className="btn font-bold btn-warning btn-outline btn-sm  mt-4"
+        >
           View More {">>"}
         </Link>
       </div>

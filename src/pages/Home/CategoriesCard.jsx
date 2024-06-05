@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function CategoriesCard({ category }) {
 
   return (
@@ -10,7 +12,7 @@ function CategoriesCard({ category }) {
         />
       </div>
       <div className="card-body">
-        <h2 className="text-xl text-center">{category?.categoryName}</h2>
+        <Link to={`/search/${category?.categoryName}`} className="text-xl text-center">{category?.categoryName}</Link>
       </div>
     </div>
   );
