@@ -32,20 +32,31 @@ const AuthProvider = ({ children }) => {
       const exist = cart.find((p) => p._id === product._id);
       const filteredCard = cart.filter((p) => p._id !== product._id);
       let newCart = [];
+      let newObj={}
       if (!exist) {
-        newCart = [...cart, { ...product, quantity: 1 }];
+        newObj = { ...product, quantity: 1, userEmail: user.email };
+        newCart = [...cart, newObj];
       } else {
-        newCart = [...filteredCard, { ...exist, quantity: exist.quantity + 1 }];
+        newObj = { ...exist, quantity: exist.quantity + 1 };
+        newCart = [...filteredCard,newObj];
       }
+      fetch(`http://localhost:5000/cart`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newObj),
+      }).then((res) => res.json())
+      .then((data) => console.log(data));
+
+
       setCart(newCart);
       toast.success("Product added to cart");
     } else {
       toast.error("Please login to add product to cart");
     }
   };
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
+  
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
@@ -73,7 +84,9 @@ const AuthProvider = ({ children }) => {
       return unscubcribe();
     };
   }, []);
-
+  // useEffect(() => {
+  //   console.log(cart);
+  // }, [cart]);
   const authInfo = {
     user,
     googleLogin,
