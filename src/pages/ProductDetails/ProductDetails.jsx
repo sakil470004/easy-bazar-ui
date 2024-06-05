@@ -3,16 +3,22 @@ import { useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import useFunction from "../../hooks/useFunction";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 function ProductDetails() {
-  const {addToCart}=useAuth();
+  const { addToDb } = useAuth();
   const { id } = useParams();
   const { isEmpty } = useFunction();
   const [product, setProduct] = useState({});
+
   const discountPrice = (
     product?.price -
     (product?.price * product?.discount) / 100
   ).toFixed(2);
+  const handleAddToCart = () => {
+    addToDb(product._id);
+    toast.success("Product added to cart");
+  };
   useEffect(() => {
     fetch(`https://easy-bazar-server.vercel.app/products/${id}`)
       .then((res) => res.json())
@@ -20,6 +26,7 @@ function ProductDetails() {
         setProduct(data);
       });
   }, [id]);
+
   if (isEmpty(product)) {
     return <LoadingSpinner />;
   } else
@@ -63,13 +70,18 @@ function ProductDetails() {
                   - {product?.discount || 0}%
                 </span>
               </div>
-              <p className="badge badge-outline badge-warning font-bold my-2">Brand : {product.brand || "N/A"}</p>
+              <p className="badge badge-outline badge-warning font-bold my-2">
+                Brand : {product.brand || "N/A"}
+              </p>
               <p className="text-lg text-gray-400">
                 Estimated Delivery:{" "}
                 {product?.shipping_details?.estimated_delivery || "N/A"}
               </p>
               <div>
-                <button onClick={()=>addToCart(product)} className="btn btn-warning mt-4 btn-outline btn-sm">
+                <button
+                  onClick={handleAddToCart}
+                  className="btn btn-warning mt-4 btn-outline btn-sm"
+                >
                   Add to Cart
                 </button>
                 <button className="btn btn-warning mt-4 btn-sm ml-4">

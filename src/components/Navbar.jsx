@@ -3,11 +3,12 @@ import useAuth from "../hooks/useAuth";
 import logo from "../assets/logo.png";
 import { BiExit } from "react-icons/bi";
 import { useEffect, useState } from "react";
-import { FaCross } from "react-icons/fa6";
+
 import { GiCrossMark } from "react-icons/gi";
 
 const Navbar = ({ setSearchText, searchText }) => {
-  const { logout, user, cart } = useAuth();
+  const { logout, user,cartTotalType } = useAuth();
+
   const navigate = useNavigate();
   const [userData2, setUserData2] = useState({});
   useEffect(() => {
@@ -27,7 +28,7 @@ const Navbar = ({ setSearchText, searchText }) => {
     navigate("/dashboard/profile");
   };
   const cartComponent = (
-    <div className="indicator cursor-pointer">
+    <Link to={'/cart'} className="indicator cursor-pointer">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-5 w-5 "
@@ -42,8 +43,8 @@ const Navbar = ({ setSearchText, searchText }) => {
           d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
         />
       </svg>
-      <span className="badge badge-sm indicator-item">{cart?.length}</span>
-    </div>
+      <span className="badge badge-sm indicator-item">{cartTotalType()}</span>
+    </Link>
   );
   const searchComponent = (
     <label className="input relative input-xs input-bordered flex items-center gap-2">

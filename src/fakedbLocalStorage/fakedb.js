@@ -32,13 +32,27 @@ const getShoppingCart = () => {
     return shoppingCart;
 }
 
+
 const deleteShoppingCart = () => {
     localStorage.removeItem('easy-bazar-cart');
 }
-
+const cartTotalItems = () => {
+    const shoppingCart = getShoppingCart();
+    let count = 0;
+    for (const id in shoppingCart) {
+        count = count + shoppingCart[id];
+    }
+    return count;
+}
+const cartTotalType = () => {
+    const shoppingCart = getShoppingCart();
+    return Object.keys(shoppingCart).length;
+}
 export {
     addToDb,
     removeFromDb,
     getShoppingCart,
-    deleteShoppingCart
+    deleteShoppingCart,
+    cartTotalItems,
+    cartTotalType
 }

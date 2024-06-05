@@ -20,6 +20,7 @@ import NewProductPage from "../pages/NewProductPage/NewProductPage";
 import CategoryPage from "../pages/CategoryPage/CategoryPage";
 import OnlyForYouPage from "../pages/OnlyForYouPage/OnlyForYouPage";
 import About from "../pages/About/About";
+import CartPage from "../pages/CartPage/CartPage";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,7 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+      {path:"/cart",element:<CartPage/>},
       {path:'/about',element:<About/>},
       { path: "/register", element: <Registration /> },
       {path: "/flash-sale", element: <FlashSalePage />},

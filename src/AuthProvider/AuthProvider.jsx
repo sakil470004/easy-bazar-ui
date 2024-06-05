@@ -9,6 +9,14 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.config";
+import {
+  addToDb,
+  removeFromDb,
+  getShoppingCart,
+  deleteShoppingCart,
+  cartTotalItems,
+  cartTotalType,
+} from "../fakedbLocalStorage/fakedb";
 
 export const AuthContext = createContext(null);
 
@@ -18,15 +26,14 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   const googleProvider = new GoogleAuthProvider();
 
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
- 
-  
+
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
@@ -54,7 +61,7 @@ const AuthProvider = ({ children }) => {
       return unscubcribe();
     };
   }, []);
- 
+
   const authInfo = {
     user,
     googleLogin,
@@ -62,7 +69,12 @@ const AuthProvider = ({ children }) => {
     signIn,
     logout,
     loading,
-    
+    cartTotalType,
+    addToDb,
+    removeFromDb,
+    getShoppingCart,
+    deleteShoppingCart,
+    cartTotalItems,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
