@@ -36,14 +36,14 @@ const Accordion = () => {
     <h2 className="text-2xl font-bold text-orange-400 uppercase">
       FAQ
     </h2>
-      <div className="mt-6 flex flex-col gap-5 border-l-4 pl-3 border-l-green-200">
+      <div className="mt-6 flex flex-col gap-5 border-l-4 pl-3 border-l-orange-200">
         {faqArray.map((faq) => (
-          <div className="collapse collapse-arrow bg-gray-200" key={faq.id}>
+          <div className="collapse collapse-arrow bg-gray-50 shadow-sm border-2 border-orange-100" key={faq.id}>
             <input type="radio" name="my-accordion-2" defaultChecked />
             <div className="collapse-title text-xl font-medium">
               {faq.question}
             </div>
-            <div className="collapse-content">
+            <div className="collapse-content border-b-2 border-blue-200">
               <p>{faq.answer}</p>
             </div>
           </div>
