@@ -48,11 +48,17 @@ const cartTotalType = () => {
     const shoppingCart = getShoppingCart();
     return Object.keys(shoppingCart).length;
 }
+const changeDesiredQuantity = (id, quantity) => {
+    const shoppingCart = getShoppingCart();
+    shoppingCart[id] = quantity;
+    localStorage.setItem('easy-bazar-cart', JSON.stringify(shoppingCart));
+}
 export {
     addToDb,
     removeFromDb,
     getShoppingCart,
     deleteShoppingCart,
     cartTotalItems,
-    cartTotalType
+    cartTotalType,
+    changeDesiredQuantity
 }

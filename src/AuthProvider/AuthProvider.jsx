@@ -16,6 +16,7 @@ import {
   deleteShoppingCart,
   cartTotalItems,
   cartTotalType,
+  changeDesiredQuantity,
 } from "../fakedbLocalStorage/fakedb";
 
 export const AuthContext = createContext(null);
@@ -75,6 +76,7 @@ const AuthProvider = ({ children }) => {
     getShoppingCart,
     deleteShoppingCart,
     cartTotalItems,
+    changeDesiredQuantity
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
