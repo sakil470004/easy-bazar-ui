@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 
 function CartPageCard({ product, updateProducts }) {
@@ -19,6 +20,9 @@ function CartPageCard({ product, updateProducts }) {
       updateProducts(newProduct);
     }
   };
+  const handleBuyNow = () => {
+   toast.error("Buy Now is not available right now");
+  }
   return (
     <div className="bg-white p-5 shadow-md border border-blue-200 rounded-lg grid  md:grid-cols-4 gap-5 items-center justify-center">
       <img src={product?.mainImage?.url} alt={product?.name} className="w-40" />
@@ -53,7 +57,7 @@ function CartPageCard({ product, updateProducts }) {
         </button>
       </div>
       <div className="flex flex-col">
-        <button className="btn btn-outline btn-sm btn-warning mb-4  px-3 py-1 rounded-lg">
+        <button onClick={handleBuyNow} className="btn btn-outline btn-sm btn-warning mb-4  px-3 py-1 rounded-lg">
           Buy Now
         </button>
         <button

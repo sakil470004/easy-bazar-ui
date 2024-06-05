@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
 import CartPageCard from "./CartPageCard";
-import { remove } from "firebase/database";
+import toast from "react-hot-toast";
 
 function CartPage() {
   const [products, setProducts] = useState([]);
   const { getShoppingCart, deleteShoppingCart } = useAuth();
 
+  const handleCheckout = () => {
+    toast.error("Checkout is not available yet");
+    };
   const updateProducts = (product) => {
     console.log(product);
     let newProduct = [];
@@ -94,7 +97,7 @@ function CartPage() {
               <p className="text-lg">$10</p>
             </div>
             <div className="flex justify-center gap-5 mt-5">
-              <button className="btn btn-sm btn-warning">Checkout</button>
+              <button onClick={handleCheckout} className="btn btn-sm btn-warning">Checkout</button>
               <button
                 onClick={() => {
                   deleteShoppingCart();
