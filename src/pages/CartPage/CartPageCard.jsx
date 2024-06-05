@@ -20,7 +20,7 @@ function CartPageCard({ product, updateProducts }) {
     }
   };
   return (
-    <div className="bg-white p-5 shadow-md rounded-lg grid  md:grid-cols-4 gap-5 items-center justify-center">
+    <div className="bg-white p-5 shadow-md border border-blue-200 rounded-lg grid  md:grid-cols-4 gap-5 items-center justify-center">
       <img src={product?.mainImage?.url} alt={product?.name} className="w-40" />
       <div>
         <h2 className="text-xl">{product?.name}</h2>
