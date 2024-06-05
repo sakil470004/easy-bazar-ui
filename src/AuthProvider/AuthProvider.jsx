@@ -10,7 +10,6 @@ import {
 import { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.config";
 
-
 export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
@@ -19,6 +18,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [cart, setCart] = useState([]);
   const googleProvider = new GoogleAuthProvider();
 
   const createUser = (email, password) => {
@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  const authInfo = { user, googleLogin, createUser, signIn, logout, loading };
+  const authInfo = { user, googleLogin, createUser, signIn, logout, loading,cart,setCart };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

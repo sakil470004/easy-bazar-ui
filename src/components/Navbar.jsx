@@ -7,7 +7,7 @@ import { FaCross } from "react-icons/fa6";
 import { GiCrossMark } from "react-icons/gi";
 
 const Navbar = ({ setSearchText, searchText }) => {
-  const { logout, user } = useAuth();
+  const { logout, user, cart } = useAuth();
   const navigate = useNavigate();
   const [userData2, setUserData2] = useState({});
   useEffect(() => {
@@ -26,6 +26,25 @@ const Navbar = ({ setSearchText, searchText }) => {
   const handleProfile = () => {
     navigate("/dashboard/profile");
   };
+  const cartComponent = (
+    <div className="indicator cursor-pointer">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5 "
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+        />
+      </svg>
+      <span className="badge badge-sm indicator-item">{cart?.length}</span>
+    </div>
+  );
   const searchComponent = (
     <label className="input relative input-xs input-bordered flex items-center gap-2">
       <input
@@ -104,15 +123,17 @@ const Navbar = ({ setSearchText, searchText }) => {
             )}
             <li>{searchComponent}</li>
             {user && (
-              <li>
-                <button
-                  onClick={handleLogout}
-                  className="btn btn-sm flex items-center justify-center bg-red-500 text-white"
-                >
-                  <BiExit />
-                  Logout
-                </button>
-              </li>
+              <>
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="btn btn-sm flex items-center justify-center bg-red-500 text-white"
+                  >
+                    <BiExit />
+                    Logout
+                  </button>
+                </li>
+              </>
             )}
           </ul>
         </div>
@@ -146,12 +167,12 @@ const Navbar = ({ setSearchText, searchText }) => {
           <>
             <button
               onClick={handleLogout}
-              className="btn btn-sm bg-red-500 text-white  lg:flex hidden  items-center justify-center"
+              className="mr-4 btn btn-sm bg-red-500 text-white  lg:flex hidden  items-center justify-center"
             >
               <BiExit /> Logout
             </button>
-
-            <div className="avatar group" title={userData2?.name || ""}>
+            {cartComponent}
+            <div className="pl-4 avatar group" title={userData2?.name || ""}>
               <div
                 onClick={handleProfile}
                 className="w-12 rounded-full border-2 border-black group-hover:border-yellow-300"
