@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import useFunction from "../../hooks/useFunction";
+import useAuth from "../../hooks/useAuth";
 
 function ProductDetails() {
+  const {addToCart}=useAuth();
   const { id } = useParams();
   const { isEmpty } = useFunction();
   const [product, setProduct] = useState({});
@@ -67,7 +69,7 @@ function ProductDetails() {
                 {product?.shipping_details?.estimated_delivery || "N/A"}
               </p>
               <div>
-                <button className="btn btn-warning mt-4 btn-outline btn-sm">
+                <button onClick={()=>addToCart(product)} className="btn btn-warning mt-4 btn-outline btn-sm">
                   Add to Cart
                 </button>
                 <button className="btn btn-warning mt-4 btn-sm ml-4">
