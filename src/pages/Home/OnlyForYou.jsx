@@ -11,7 +11,17 @@ function OnlyForYou() {
     fetch("https://easy-bazar-server.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data.slice(0, 12));
+          // as all category don't have product so give better experience for user
+          const shuffleArray = (array) => {
+            for (let i = array.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+          };
+  
+          // Set shuffled rows
+          setProducts(shuffleArray(data)?.slice(0, 12));
       });
   }, []);
   if (isEmpty(products)) {

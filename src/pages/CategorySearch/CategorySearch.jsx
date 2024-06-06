@@ -3,7 +3,8 @@ import useFunction from "../../hooks/useFunction";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import CategorySearchCard from "./CategorySearchCard";
 import { useParams } from "react-router-dom";
-import OnlyForYou from "../Home/OnlyForYou";
+
+import Recommendation from "../../components/Recommendation/Recommendation";
 
 function CategorySearch() {
   const { nameId } = useParams();
@@ -45,7 +46,7 @@ function CategorySearch() {
         ))}
       </div>
     <div className="my-5">
-    <OnlyForYou/>
+    <Recommendation/>
     </div>
     </div>
   );

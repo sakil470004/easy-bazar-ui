@@ -3,7 +3,7 @@ import useAuth from "../../hooks/useAuth";
 
 import CartPageCard from "./CartPageCard";
 import toast from "react-hot-toast";
-import OnlyForYou from "../Home/OnlyForYou";
+import Recommendation from "../../components/Recommendation/Recommendation";
 
 function CartPage() {
   const [products, setProducts] = useState([]);
@@ -123,7 +123,7 @@ function CartPage() {
       </div>
      <div className="mx-2">
 
-      <OnlyForYou  />
+      <Recommendation  />
      </div>
     </div>
   );

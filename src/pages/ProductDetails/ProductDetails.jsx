@@ -4,7 +4,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import useFunction from "../../hooks/useFunction";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
-import OnlyForYou from "../Home/OnlyForYou";
+import Recommendation from "../../components/Recommendation/Recommendation";
 
 function ProductDetails() {
   const { addToDb } = useAuth();
@@ -111,7 +111,7 @@ function ProductDetails() {
             </div>
           </div>
         </div>
-        <OnlyForYou />
+        <Recommendation />
       </div>
     );
 }
