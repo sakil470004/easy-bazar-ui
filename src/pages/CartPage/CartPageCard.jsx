@@ -23,9 +23,10 @@ function CartPageCard({ product, updateProducts }) {
       updateProducts(newProduct);
     }
   };
-  const handleBuyNow = (product) => {
-   setBuyItems([product]);
-   navigate("/dashboard/add-orders");
+  const handleBuyNow = () => {
+    const newArray=[product];
+   setBuyItems(newArray);
+   navigate("/dashboard/addorders");
   }
   return (
     <div className="bg-white p-5 shadow-md border border-blue-200 rounded-lg grid  md:grid-cols-4 gap-5 items-center justify-center">

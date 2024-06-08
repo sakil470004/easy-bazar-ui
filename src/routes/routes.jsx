@@ -108,10 +108,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "add-orders",
+        path: "addorders",
         element: (
           <PrivateRoute>
-            <AddOrder />
+            <AddOrder />,
           </PrivateRoute>
         ),
       },

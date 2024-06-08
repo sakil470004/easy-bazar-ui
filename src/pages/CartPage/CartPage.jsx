@@ -4,9 +4,11 @@ import useAuth from "../../hooks/useAuth";
 import CartPageCard from "./CartPageCard";
 import toast from "react-hot-toast";
 import Recommendation from "../../components/Recommendation/Recommendation";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 function CartPage() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { getShoppingCart, deleteShoppingCart } = useAuth();
 
   const handleCheckout = () => {
@@ -27,6 +29,7 @@ function CartPage() {
     setProducts(newProduct);
   };
   useEffect(() => {
+    setLoading(true);
     fetch("https://easy-bazar-server.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
@@ -37,8 +40,13 @@ function CartPage() {
         });
 
         setProducts(cartProducts);
-      });
+        setLoading(false);
+      })
+      .finally(() => setLoading(false));
   }, []);
+  if (loading) {
+    return <LoadingSpinner/>;
+  }
   return (
     <div className="mx-6 my-10 ">
       <div className="grid bg-gray-50  md:grid-cols-3 gap-5 ">
@@ -88,8 +96,7 @@ function CartPage() {
                     .reduce(
                       (acc, product) =>
                         acc +
-                        product.quantity * product.price -
-                        product.discount,
+                        product.quantity * product.price *(product.discount/100),
                       0
                     )
                     .toFixed(2)}
@@ -121,10 +128,9 @@ function CartPage() {
           )}
         </div>
       </div>
-     <div className="mx-2">
-
-      <Recommendation  />
-     </div>
+      <div className="mx-2">
+        <Recommendation />
+      </div>
     </div>
   );
 }

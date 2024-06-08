@@ -40,6 +40,7 @@ function DashboardSideBar() {
             All Products
           </Link>
         </li>
+     
 
         <hr className="bg-blue-100 h-1" />
         <li className="btn text-lg p-0 flex  w-full h-full hover:border hover:border-l-8 hover:border-l-blue-300 transform transition-all duration-300">
