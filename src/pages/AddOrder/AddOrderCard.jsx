@@ -26,10 +26,11 @@ function AddOrderCard({ product }) {
           </span>
           <span className=" text-black  mx-1">- {product?.discount}%</span>
         </p>
-        <p className="text-lg">
+        
+        <p >Quantity : {product.quantity}</p>
+        <p className="text-lg font-semibold">
           Total: ${(priceAfterDiscount * product?.quantity).toFixed(2)}
         </p>
-        <p className="font-bold">Quantity : {product.quantity}</p>
       </div>
     
      

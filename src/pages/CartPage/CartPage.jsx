@@ -5,14 +5,24 @@ import CartPageCard from "./CartPageCard";
 import toast from "react-hot-toast";
 import Recommendation from "../../components/Recommendation/Recommendation";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import { useNavigate } from "react-router-dom";
 
 function CartPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { getShoppingCart, deleteShoppingCart } = useAuth();
+  const { getShoppingCart, deleteShoppingCart, setBuyItems } = useAuth();
+  const navigate = useNavigate();
 
   const handleCheckout = () => {
-    toast.error("Checkout is not available yet");
+    if (products.length === 0) {
+      toast.error("No Product in Cart");
+    } else {
+      toast.success("Checkout Successfully");
+      deleteShoppingCart();
+      setBuyItems(products);
+      setProducts([]);
+      navigate("/dashboard/addorders");    
+    }
   };
   const updateProducts = (product) => {
     console.log(product);
@@ -45,7 +55,7 @@ function CartPage() {
       .finally(() => setLoading(false));
   }, []);
   if (loading) {
-    return <LoadingSpinner/>;
+    return <LoadingSpinner />;
   }
   return (
     <div className="mx-6 my-10 ">
@@ -96,7 +106,9 @@ function CartPage() {
                     .reduce(
                       (acc, product) =>
                         acc +
-                        product.quantity * product.price *(product.discount/100),
+                        product.quantity *
+                          product.price *
+                          (product.discount / 100),
                       0
                     )
                     .toFixed(2)}

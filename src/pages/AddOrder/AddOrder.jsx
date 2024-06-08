@@ -62,7 +62,7 @@ export default function AddOrder() {
       <h2 className="text-2xl font-bold text-orange-400 uppercase">
         Add Order
       </h2>
-      <div className="mt-6">
+      <div className="mt-6 grid lg:grid-cols-3 md:grid-cols-2">
         {products.map((item) => (
           <AddOrderCard product={item} key={item._id} />
         ))}
@@ -123,7 +123,7 @@ export default function AddOrder() {
               <option value="rocket">Rocket</option>
             </select>
           </div>
-          <div className="flex justify-between">
+          <div className="flex font-bold text-xl mx-2 justify-between">
             <p className="text-lg">Total Price:</p>
             <p className="text-lg">${totalPrice}</p>
           </div>
