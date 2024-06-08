@@ -27,6 +27,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [buyItems,setBuyItems] = useState([]);
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -76,7 +77,9 @@ const AuthProvider = ({ children }) => {
     getShoppingCart,
     deleteShoppingCart,
     cartTotalItems,
-    changeDesiredQuantity
+    changeDesiredQuantity,
+    buyItems,
+    setBuyItems,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

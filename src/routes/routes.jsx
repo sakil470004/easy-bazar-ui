@@ -22,6 +22,7 @@ import OnlyForYouPage from "../pages/OnlyForYouPage/OnlyForYouPage";
 import About from "../pages/About/About";
 import CartPage from "../pages/CartPage/CartPage";
 import CategorySearch from "../pages/CategorySearch/CategorySearch";
+import AddOrder from "../pages/AddOrder/AddOrder";
 
 export const router = createBrowserRouter([
   {
@@ -42,14 +43,14 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
-      {path:"/cart",element:<CartPage/>},
-      {path:'/about',element:<About/>},
+      { path: "/cart", element: <CartPage /> },
+      { path: "/about", element: <About /> },
       { path: "/register", element: <Registration /> },
-      {path: "/flash-sale", element: <FlashSalePage />},
-      {path: "/new-product-page", element: <NewProductPage />},
-      {path:'/categories-all',element:<CategoryPage/>},
-      {path:'/only-for-you',element:<OnlyForYouPage/>},
-      {path:'/search/:nameId',element:<CategorySearch/>},
+      { path: "/flash-sale", element: <FlashSalePage /> },
+      { path: "/new-product-page", element: <NewProductPage /> },
+      { path: "/categories-all", element: <CategoryPage /> },
+      { path: "/only-for-you", element: <OnlyForYouPage /> },
+      { path: "/search/:nameId", element: <CategorySearch /> },
     ],
   },
   {
@@ -98,10 +99,22 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {path: "profile", element: <PrivateRoute><UserProfile /></PrivateRoute>
-
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <UserProfile />
+          </PrivateRoute>
+        ),
       },
-
+      {
+        path: "add-orders",
+        element: (
+          <PrivateRoute>
+            <AddOrder />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "edit-products/:id",
         element: (
@@ -109,6 +122,11 @@ export const router = createBrowserRouter([
             <EditProduct />,
           </PrivateRoute>
         ),
+      },
+
+      {
+        path: "*",
+        element: <ErrorPage />,
       },
     ],
   },

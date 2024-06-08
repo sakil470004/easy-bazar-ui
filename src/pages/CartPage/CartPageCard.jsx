@@ -1,8 +1,11 @@
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 function CartPageCard({ product, updateProducts }) {
-  const { removeFromDb, changeDesiredQuantity } = useAuth();
+  const { removeFromDb, changeDesiredQuantity, 
+    setBuyItems } = useAuth();
+    const navigate = useNavigate();
   const priceAfterDiscount = (
     product?.price -
     (product?.price * product?.discount) / 100
@@ -20,8 +23,9 @@ function CartPageCard({ product, updateProducts }) {
       updateProducts(newProduct);
     }
   };
-  const handleBuyNow = () => {
-   toast.error("Buy Now is not available right now");
+  const handleBuyNow = (product) => {
+   setBuyItems([product]);
+   navigate("/dashboard/add-orders");
   }
   return (
     <div className="bg-white p-5 shadow-md border border-blue-200 rounded-lg grid  md:grid-cols-4 gap-5 items-center justify-center">
