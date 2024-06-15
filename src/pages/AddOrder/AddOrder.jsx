@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import AddOrderCard from "./AddOrderCard";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function AddOrder() {
   const { buyItems, setBuyItems, user } = useAuth();
   const [products, setProducts] = useState([]);
   const [userData, setUserData] = useState({});
-
+const navigate = useNavigate();
   const totalPrice = products?.reduce((acc, item) => {
     return (
       acc + item.quantity * item.price * (1 - item.discount / 100).toFixed(2)
@@ -15,12 +17,14 @@ export default function AddOrder() {
 
   const handlePlaceOrder = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
     const name = e.target[0].value;
     const email = e.target[1].value;
     const phone = e.target[2].value;
     const address = e.target[3].value;
     const payment = e.target[4].value;
 
+    // order=[shipped,processing,delivered,cancelled]
     const order = {
       name,
       email,
@@ -30,22 +34,26 @@ export default function AddOrder() {
       products,
       totalPrice,
       orderTime: new Date(),
+      status: "processing",
     };
     console.log(order);
-    // fetch("https://easy-bazar-server.vercel.app/addOrder", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(order),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.insertedId) {
-    //       alert("Order Placed Successfully");
-    //       setBuyItems([]);
-    //     }
-    //   });
+    fetch("http://localhost:5000/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          toast.success("Order Placed Successfully");
+          setBuyItems([]);
+          setProducts([]);
+          navigate('/dashboard/orders');
+        }
+      });
   };
   useEffect(() => {
     fetch(`https://easy-bazar-server.vercel.app/users/${user?.email}`)
@@ -56,7 +64,7 @@ export default function AddOrder() {
   }, [user]);
   useEffect(() => {
     setProducts(buyItems);
-  }, []);
+  }, [user?.email, buyItems]);
   return (
     <div className="my-6 ">
       <h2 className="text-2xl font-bold text-orange-400 uppercase">
