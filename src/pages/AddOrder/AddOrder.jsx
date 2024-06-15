@@ -8,7 +8,7 @@ export default function AddOrder() {
   const { buyItems, setBuyItems, user } = useAuth();
   const [products, setProducts] = useState([]);
   const [userData, setUserData] = useState({});
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const totalPrice = products?.reduce((acc, item) => {
     return (
       acc + item.quantity * item.price * (1 - item.discount / 100).toFixed(2)
@@ -28,6 +28,7 @@ const navigate = useNavigate();
     const order = {
       name,
       email,
+      userEmail: user?.email,
       phone,
       address,
       paymentMethod: payment,
@@ -51,7 +52,7 @@ const navigate = useNavigate();
           toast.success("Order Placed Successfully");
           setBuyItems([]);
           setProducts([]);
-          navigate('/dashboard/orders');
+          navigate("/dashboard/orders");
         }
       });
   };
