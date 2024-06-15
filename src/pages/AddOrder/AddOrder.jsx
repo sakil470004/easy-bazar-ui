@@ -38,7 +38,7 @@ export default function AddOrder() {
       status: "processing",
     };
     console.log(order);
-    fetch("http://localhost:5000/orders", {
+    fetch("https://easy-bazar-server.vercel.app/orders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
